@@ -4,16 +4,25 @@ import { connect } from 'react-redux';
 
 import Word from './Word';
 import Filter from './Filter';
+import Header from './Header';
+import Form from './Form';
 
 class Main extends Component {
-    state = {}
-
+    getWordList() {
+        const { myFilter, myWords } = this.props;
+        if(myFilter === 'SHOW_ALL') return myWords;
+        if(myFilter === 'MEMORIZED') return myWords.filter(e => e.memorized);
+        if(myFilter === 'NEED_PRACTICE') return myWords.filter(e => !e.memorized);
+        return myWords;
+    }
     render() {
         return (
             <View style={{ backgroundColor: 'yellow', flex: 1, alignSelf: 'stretch', justifyContent: 'center' }}>
-                <View style={{ flex: 10 }}>
+                <Header />
+                <View style={{ flex: 10, alignItems: 'center' }}>
+                    { this.props.myIsAdding ? <Form /> : null }
                     <FlatList
-                        data={this.props.myWords}
+                        data={this.getWordList()}
                         renderItem={({ item }) => <Word myWord={item} />}
                         keyExtractor={item => item.id}
                     />
@@ -27,7 +36,8 @@ class Main extends Component {
 function mapStateToProps(state) {
     return {
         myFilter: state.filterStatus,
-        myWords: state.arrWords
+        myWords: state.arrWords,
+        myIsAdding: state.isAdding
     }
 }
 
