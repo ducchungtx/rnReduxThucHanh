@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { TextInput, View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
-export default class Form extends Component {
+import { connect } from 'react-redux';
+
+class Form extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -13,7 +15,14 @@ export default class Form extends Component {
 
     onAdd() {
         const { en, vn } = this.state;
-        
+        this.props.dispatch({
+            type: 'ADD_WORD',
+            en,
+            vn
+        });
+        this.props.dispatch({
+            type: 'TOGGLE_IS_ADDING'
+        });
     }
 
     render() {
@@ -38,6 +47,8 @@ export default class Form extends Component {
         );
     }
 }
+
+export default connect()(Form);
 
 const styles = StyleSheet.create({
     container: {
