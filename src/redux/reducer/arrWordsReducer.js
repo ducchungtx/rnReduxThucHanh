@@ -24,7 +24,7 @@ const arrWordsReducer = (state = defaultArrWords, action) => {
     }
     if(action.type === 'TOGGLE_SHOW') {
         return state.map(e => {
-            if(er.id !== action.id) return e;
+            if(e.id !== action.id) return e;
             return { ...e, isShow: !e.isShow };
         });
     }
