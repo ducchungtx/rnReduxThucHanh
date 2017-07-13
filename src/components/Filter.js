@@ -10,9 +10,6 @@ class Filter extends Component {
         if(statusName === myFilterStatus) return { color: 'yellow', fontWeight: 'bold' };
         return styles.buttonText;
     }
-    setFilterStatus(actionType) {
-        this.props.dispatch({ type: actionType });
-    }
     render() {
         return (
             <View style={styles.container}>
