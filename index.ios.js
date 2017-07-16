@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import App from './src/App';
+import App from './src2/App';
 
 export default class rnReduxThucHanh extends Component {
   render() {
