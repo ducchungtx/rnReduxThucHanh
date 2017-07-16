@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { startFetchData, fetchSuccess, fetchError, fetchDataThunk } from '../redux/actionCreators';
+import * as actionCreators from '../redux/actionCreators';
 
 const { width } = Dimensions.get('window');
 
@@ -62,7 +62,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { startFetchData, fetchSuccess, fetchError, fetchDataThunk })(Main)
+export default connect(mapStateToProps, actionCreators)(Main)
 
 const styles = StyleSheet.create({
     container: {
